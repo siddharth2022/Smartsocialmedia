@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+      <link href='https://fonts.googleapis.com/css?family=Julius Sans One' rel='stylesheet'>
+      
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+    <link href='https://fonts.googleapis.com/css?family=Megrim' rel='stylesheet'>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Work+Sans:400,700,900");
+  img {
+    width: 25%;
+  }
+  
+.button {
+  touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: inline-block;
+  border: .2em solid;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.6;
+  color: #FFF;
+}
+
+.button__text:before {
+  content: attr(title);
+}
+
+.button__text--bis {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transform: translateX(-1em);
+          transform: translateX(-1em);
+  opacity: 0;
+}
+
+.button__mask {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  -webkit-transform: translateX(-100%) rotate(45deg);
+          transform: translateX(-100%) rotate(45deg);
+  transition: all 0.3s;
+}
+
+.button:hover {
+  opacity: 1;
+}
+
+.button:hover .button__text {
+  -webkit-animation: fx-text .3s ease-out;
+          animation: fx-text .3s ease-out;
+}
+
+.button:hover .button__text--bis {
+  -webkit-animation: fx-text-bis .3s ease-out;
+          animation: fx-text-bis .3s ease-out;
+}
+
+.button:hover .button__mask {
+  -webkit-animation: fx-mask .3s ease-out;
+          animation: fx-mask .3s ease-out;
+}
+
+.button:active {
+  opacity: 1;
+  background: white;
+  color: inherit;
+}
+
+@-webkit-keyframes fx-mask {
+  0% {
+    -webkit-transform: translateX(-100%) rotate(45deg);
+            transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    -webkit-transform: translateX(100%) rotate(45deg);
+            transform: translateX(100%) rotate(45deg);
+  }
+}
+
+@keyframes fx-mask {
+  0% {
+    -webkit-transform: translateX(-100%) rotate(45deg);
+            transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    -webkit-transform: translateX(100%) rotate(45deg);
+            transform: translateX(100%) rotate(45deg);
+  }
+}
+@-webkit-keyframes fx-text {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1em);
+            transform: translateX(1em);
+    opacity: 0;
+  }
+}
+@keyframes fx-text {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1em);
+            transform: translateX(1em);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fx-text-bis {
+  0% {
+    -webkit-transform: translateX(-1em);
+            transform: translateX(-1em);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fx-text-bis {
+  0% {
+    -webkit-transform: translateX(-1em);
+            transform: translateX(-1em);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+.button__text {
+  display: block;
+  padding: 1em 2em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+  .fontst{
+    font-family: 'Megrim';
+    font-size: 530%;
+    font-weight: 150; 
+    margin-top: 9%;  
+    letter-spacing: 4px;  
+    
+  }
+  body{
+    background-color: rgb(13, 13, 13);
+  }
+  .mleft{
+    margin-left: 20%;
+  }
+  .mright{
+    margin-right: 20;
+  }
+  .desc{
+    color: white;
+    text-align: center;
+   margin-top: 5%;
+   font-size: 120%;
+   font-family: 'Julius Sans One';
+  }
+  </style>
+  <body>
+
+
+
+
+
+
+      <form id="labnol" method="get" action="https://www.google.com/search">
+        <div class="speech">
+          <input type="text" style="height:1px;width:1px;" nname="q" id="transcript" placeholder="Speak" />
+          <img onLoad="startDic()" style="height:1px;width: 1px;" src="//i.imgur.com/cHidSVu.gif" />
+      
+          </div>
+      </form>
+      
+          
+      <div style="text-align: center;color: white;" class="fontst">The Social Media</div>
+      <div class="desc">Connect with friends, family and other people you know.</div>
+
+    
+    <div class="row center" style="margin-top:10% ">
+            <a href="./login.php">  <div class="button">
+              <span class="button__mask"></span>
+              <span class="button__text">Login</span>
+              <span class="button__text button__text--bis">Login</span>
+            </div>
+     </a>
+     <a href="./signup.php">
+            <div class="button" style="margin-inline-start: 4%">
+              <span class="button__mask"></span>
+              <span class="button__text">Signup</span>
+              <span class="button__text button__text--bis">Signup</span>
+    
+          </div>  
+        </a>
+    </div>
+        <div class="img center" style="margin-top: 5%">
+        <img src="abc.jpg" alt="The Social Media" class="center">
+        </div>
+
+
+
+        <script>
+            function startDic(){
+                responsiveVoice.setDefaultVoice("US English Female");
+              responsiveVoice.speak("Do you want to signup? or login?");
+              
+              setTimeout(startDictation, 2000);
+              
+            }
+            
+            
+            function sleep(delay) {
+                var start = new Date().getTime();
+                while (new Date().getTime() < start + delay);
+              }
+          function startDictation()  {
+            
+              if (window.hasOwnProperty('webkitSpeechRecognition')) {
+                
+              var recognition = new webkitSpeechRecognition();
+        
+              recognition.continuous = true;
+              recognition.interimResults = false;
+        
+              recognition.lang = "en-US";
+              recognition.start();
+        
+              recognition.onresult = function(e) {
+                document.getElementById('transcript').value
+                                         = e.results[0][0].transcript;
+                                         
+                recognition.stop();
+                  if(e.results[0][0].transcript=="login")
+                window.location.href = "./login.php";
+                  else if(e.results[0][0].transcript=="sign up" || e.results[0][0].transcript=="sainath" )
+                      window.location.href = "./signup.php";
+                  else
+                      startDictation();
+                  setTimeout(startDictation, 30);
+              
+              };
+        
+              recognition.onerror = function(e) {
+                recognition.stop();
+              }
+        
+            }
+          }
+        </script>
+        
+        
+
+
+
+
+
+  </body>
+</html>
