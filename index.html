@@ -3,15 +3,15 @@
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+      <link rel="stylesheet" href="./css/reset.min.css">
       <link href='https://fonts.googleapis.com/css?family=Julius Sans One' rel='stylesheet'>
       
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
     <link href='https://fonts.googleapis.com/css?family=Megrim' rel='stylesheet'>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+    <script src="./js/materialize.min.js"></script>
+    <script src='./js/responsivevoice.js'></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
@@ -167,7 +167,7 @@
 }
   .fontst{
     font-family: 'Megrim';
-    font-size: 530%;
+    font-size: 500%;
     font-weight: 150; 
     margin-top: 9%;  
     letter-spacing: 4px;  
@@ -200,13 +200,13 @@
       <form id="labnol" method="get" action="https://www.google.com/search">
         <div class="speech">
           <input type="text" style="height:1px;width:1px;" nname="q" id="transcript" placeholder="Speak" />
-          <img onLoad="startDic()" style="height:1px;width: 1px;" src="//i.imgur.com/cHidSVu.gif" />
+          <img onload="startDic()" style="height:1px;width: 1px;" src="//i.imgur.com/cHidSVu.gif" />
       
           </div>
       </form>
       
           
-       <div style="text-align: center;color: white;" class="fontst">The S<img style="height:55px ;width:55px;" src="o-letter.png" >cial Media</div>
+       <div style="text-align: center;color: white;" class="fontst">The S<img style="height:47px ;width:47px;" src="o-letter.png" >cial Media</div>
       <div class="desc">Connect with friends, family and other people you know.</div>
 
     
@@ -263,6 +263,7 @@
                                          = e.results[0][0].transcript;
                                          
                 recognition.stop();
+                console.log(e.results[0][0].transcript);
                   if(e.results[0][0].transcript=="login")
                 window.location.href = "./login.php";
                   else if(e.results[0][0].transcript=="sign up" || e.results[0][0].transcript=="sainath" )

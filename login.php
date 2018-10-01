@@ -31,7 +31,12 @@ else if(isset($_POST["username"]) && isset($_POST["password"]))
 	if(!isset($output))
 	$str = "  &nbsp;&nbsp;&nbsp;&nbsp; Username does not exist !";
 	elseif($output==0)
+	{
 	$str ="  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Logged in Successfully  !";
+	
+	setcookie("username", $_POST['username']); 
+	header("Location:./home/index.php");
+	}
 	else
 	$str = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Password Not Match     !";
 	
@@ -159,7 +164,7 @@ else if(isset($_POST["username"]) && isset($_POST["password"]))
 	<div class="col-md-4">
 				<form action="./login.php" method="POST" name="form-name" class="login100-form validate-form" style="margin-top:-20px;margin-left:39%;">
 					<span class="login100-form-title">
-						Member Login
+						 Login
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
