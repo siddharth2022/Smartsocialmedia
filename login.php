@@ -2,7 +2,7 @@
 $state=1;
 
 $str ="&nbsp;Welcome to The Social Media";
-if(isset($_POST['name']) && isset($_POST['surname'])&& isset($_POST['mobileno'])&& isset($_POST['email'])&& isset($_POST['pass'])&& isset($_POST['dob']) )
+if(isset($_POST['name']) && isset($_POST['surname'])&& isset($_POST['mobileno'])&& isset($_POST['email'])&& isset($_POST['pass'])&& isset($_POST['dob']) )		
 {
 	
 	$name=$_POST['name'];
@@ -15,6 +15,7 @@ if(isset($_POST['name']) && isset($_POST['surname'])&& isset($_POST['mobileno'])
 	$output = shell_exec($param);
 	//echo $param;
 	//echo $output;
+	
 	if($output==0)
 	$str="Account Created Successfully!";
 	else
