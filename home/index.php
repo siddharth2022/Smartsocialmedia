@@ -9,6 +9,7 @@ else
   setcookie("user_name",$_COOKIE["username"]);
   $notif = "python ../python_files/get_notification.py";
   $param = $notif." ".$_COOKIE['username'];
+  $username=$_COOKIE['username']; 
   $notif = shell_exec($param);
   $notif=explode(",", $notif);
   $count=0;  
@@ -35,7 +36,7 @@ $state = $words[2];
 $country = $words[3];
 $dob = $words[4];
 $profile_pic = $words[5];
-
+$fullname = $name."".$surname;
 //print $profile_pic;
 
 $profile_pic="../".$profile_pic;
@@ -95,6 +96,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       else if(home_pass==2)
       {
         responsiveVoice.speak("What Status You want to post?");
+        home_pass=3;
+      }
+      else if(home_pass==4)
+      {
+        responsiveVoice.speak("Do you want to make post it in public or private?");
+        home_pass=5;
       }
               if (window.hasOwnProperty('webkitSpeechRecognition')) {
                 
@@ -139,11 +146,29 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
               home_pass=2;
             }
-            
+            if(e.results[0][0].transcript.replace(/ /g,'')=="postit" || e.results[0][0].transcript.replace(/ /g,'')=="sendit" || e.results[0][0].transcript.replace(/ /g,'')=="postthis" || e.results[0][0].transcript.replace(/ /g,'')=="sendthis")
+					  {           //      	document.getElementById("homing").click(); }
+
+              home_pass=2;
+            }
           }
-          if(home_pass==2)
+          if(home_pass==3)
           {
             document.getElementById("post_content").innerHTML = e.results[0][0].transcript;
+            home_pass=4;
+          }
+          
+          if(home_pass==5)
+          {
+            var ddl = document.getElementById('post_privacy_type');
+            var opts = ddl.options.length;
+            for (var i=0; i<opts; i++){
+              if (ddl.options[i].value ==e.results[0][0].transcript ){
+              ddl.options[i].selected = true;
+              break;
+                  }
+                  }
+            home_pass=1;
           }
                 setTimeout(startDictation,1);
 
@@ -370,13 +395,34 @@ window.location="../home/index.php";
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">Welcome to Smart Social Media</h6> 
               <p contenteditable="true" id="post_content" class="w3-border w3-padding">Status: Feeling Blue</p>
-              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
+              <button type="button" onclick="send_post_to_db()" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
               <button type="button" class="w3-button w3-theme"><i class="fa fa-image"></i>  Attach Image</button> 
               <input type="file" class="w3-button w3-theme"/>
-              <select name="private_post">
+              <select name="private_post" id="post_privacy_type">
   <option value="public">public</option>
   <option value="private">private</option>
-  
+  <script>
+  function send_post_to_db(){
+    var username ="<?php echo $username; ?>";
+    var fullname ="<?php echo $fullname; ?>";
+                var desc = document.getElementById("post_content").innerHTML;
+                var ddl = document.getElementById('post_privacy_type');
+                var p_t = ddl.value;
+                if(p_t=="private")
+                var p_t_1=1;
+                else
+                var p_t_1=0;
+                console.log(fullname);
+<?php
+
+$str = "python ../python_files/post.py";
+$param=$str." ".$username." ".$fullname." "."Hello"." "."1";
+$out=shell_exec($param);
+
+?>
+      console.log("<?php  echo $param; ?>");
+  }
+  </script>
 </select>
             </div>
           </div>
@@ -404,7 +450,7 @@ window.location="../home/index.php";
   
       <?php 
   $str = "python ../python_files/get_post.py";
-	$param=$str." ".$_COOKIE['username'];
+	$param=$str." ".$username;
 	
 $info = shell_exec($param);
 //$info = "sid yadav 2021";
@@ -462,7 +508,7 @@ for($i=0;$i<(sizeof($words)/8)-1;$i++)
   
  <?php
   
-$str = "python ../python_files/get_user_list.py"." ".$_COOKIE['username'];
+$str = "python ../python_files/get_user_list.py"." ".$username;
 $info = shell_exec($str);
 //$info = "sid yadav 2021";
 $words = explode(",", $info);
@@ -553,30 +599,22 @@ $user_link = explode(",", $info);
 <ul class="w3-ul w3-card-4">
   <li class="w3-bar">
     <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">hide</span>
-    <img src="../images/avatar3.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+    <img src="../images/arshit.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
     <div class="w3-bar-item">
-      <span class="w3-large">Mike</span><br>
+      <span class="w3-large">Arshit</span><br>
       <span>Web Designer</span>
     </div>
   </li>
 
   <li class="w3-bar">
     <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">hide</span>
-    <img src="img_avatar5.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+    <img src="../images/avatar3.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
     <div class="w3-bar-item">
-      <span class="w3-large">Jill</span><br>
+      <span class="w3-large">Hardik</span><br>
       <span>Support</span>
     </div>
   </li>
 
-  <li class="w3-bar">
-    <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">hide</span>
-    <img src="img_avatar6.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
-    <div class="w3-bar-item">
-      <span class="w3-large">Jane</span><br>
-      <span>Accountant</span>
-    </div>
-  </li>
 </ul>
 </div>
 </div>
